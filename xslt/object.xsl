@@ -40,11 +40,8 @@
 			<body>
 				<h1>{$json?label}</h1>
 				<p>{json:path($json, 'subject_of') [json:path(., ('classified_as', 'label' )) = 'physical description'] ? value}</p>
-				<img src="{json:path($json, ('representation', 'representation')) [ json:path(., ('classified_as', 'label')) = 'thumbnail image'] ?id}"/>
 				<xsl:for-each select="json:path($json, 'representation')">
-					<a href="{json:path(., 'representation')[ json:path(., ('classified_as', 'label')) = 'large image'] ?id}">
-						<img src="{json:path(., 'representation')[ json:path(., ('classified_as', 'label')) = 'thumbnail image'] ?id}"/>
-					</a>
+					<p><a href="{json:path(., 'representation')[ json:path(., ('classified_as', 'label')) = 'large image'] ?id}"><img src="{json:path(., 'representation')[ json:path(., ('classified_as', 'label')) = 'thumbnail image'] ?id}"/></a></p>
 				</xsl:for-each>
 			</body>
 		</html>
@@ -67,56 +64,6 @@
 			}
 			img {
 				border: none;
-			}
-			div.facet label {
-				font-weight: bold;
-				display: inline-block;
-				text-align: right;
-				width: 15em;
-			}
-			div.facet select {
-				width: 30em;
-			}
-			div.facet {
-				margin-bottom: 0.5em;
-			}
-			div.chart-group {
-				padding: 1em;
-				margin-top: 1em;
-				background-color: #E5E5E5;
-			}
-			div.charts {
-				display: flex;
-				flex-wrap: wrap;
-			}
-			div.chart {
-				background-color: #D0E0E0;
-				padding: 0.5em;
-				margin: 0.5em;
-				border-style: solid;
-				border-width: 1px;
-				border-color: #007878;
-			}
-			div.chart div.bucket {
-				position: relative; 
-				height: 1.5em;
-			}
-			div.chart div.bucket div.bar {
-				z-index: 0; 
-				position: absolute; 
-				background-color: lightsteelblue;
-				height: 1.2em;
-			}
-			div.chart div.bucket div.label {
-				width: 100%;
-				height: 100%;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-				position: relative;
-			}
-			div.chart div.bucket div.label a {
-				text-decoration: none;
 			}
 		</style>
 	</xsl:template>
